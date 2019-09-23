@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.bupt.new_account.dao.DeviceTokenRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.edu.bupt.new_account.model.DeviceTokenRelation" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="IEEE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="endPoint" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="token" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gatewayName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shortAddress" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="uuid" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, IEEE, endPoint, token, type, gatewayName, shortAddress, uuid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from deviceTokenRelation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from deviceTokenRelation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByUuid" parameterType="java.lang.String" >
+    delete from deviceTokenRelation
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.edu.bupt.new_account.model.DeviceTokenRelation" >
+    insert into deviceTokenRelation (id, IEEE, endPoint, 
+      token, type, gatewayName, 
+      shortAddress, uuid)
+    values (#{id,jdbcType=INTEGER}, #{ieee,jdbcType=VARCHAR}, #{endpoint,jdbcType=INTEGER}, 
+      #{token,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{gatewayname,jdbcType=VARCHAR}, 
+      #{shortaddress,jdbcType=VARCHAR}, #{uuid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.edu.bupt.new_account.model.DeviceTokenRelation" >
+    insert into deviceTokenRelation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ieee != null" >
+        IEEE,
+      </if>
+      <if test="endpoint != null" >
+        endPoint,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="gatewayname != null" >
+        gatewayName,
+      </if>
+      <if test="shortaddress != null" >
+        shortAddress,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ieee != null" >
+        #{ieee,jdbcType=VARCHAR},
+      </if>
+      <if test="endpoint != null" >
+        #{endpoint,jdbcType=INTEGER},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayname != null" >
+        #{gatewayname,jdbcType=VARCHAR},
+      </if>
+      <if test="shortaddress != null" >
+        #{shortaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.edu.bupt.new_account.model.DeviceTokenRelation" >
+    update deviceTokenRelation
+    <set >
+      <if test="ieee != null" >
+        IEEE = #{ieee,jdbcType=VARCHAR},
+      </if>
+      <if test="endpoint != null" >
+        endPoint = #{endpoint,jdbcType=INTEGER},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayname != null" >
+        gatewayName = #{gatewayname,jdbcType=VARCHAR},
+      </if>
+      <if test="shortaddress != null" >
+        shortAddress = #{shortaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.edu.bupt.new_account.model.DeviceTokenRelation" >
+    update deviceTokenRelation
+    set IEEE = #{ieee,jdbcType=VARCHAR},
+      endPoint = #{endpoint,jdbcType=INTEGER},
+      token = #{token,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      gatewayName = #{gatewayname,jdbcType=VARCHAR},
+      shortAddress = #{shortaddress,jdbcType=VARCHAR},
+      uuid = #{uuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
